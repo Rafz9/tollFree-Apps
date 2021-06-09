@@ -1,0 +1,132 @@
+{% extends "layouts/base-fullscreen.html" %}
+{% load static %}
+
+{% block title %} Sign In {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<!-- CSS style here as the template didn't use any css  -->
+<!-- 210406 yan added some style for login page  -->
+        <style>
+            
+            .logoAlign{
+                margin-left: 400px;
+            }
+
+            .headerText{
+                color: #ee7202;
+                margin-right: 58%;
+                margin-top: -40px;
+            }
+
+            .footerText{
+                color: white;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .infoText{
+                color: #ee7202;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+        </style>
+
+
+    <main>
+        <!-- 210306 orange box header (yan)  -->
+        <h1 style="background-color: #ee7202; height: 40px"></h1>
+        <!-- TM ONE logo (yan)  -->
+        <img src="{% static '/assets/img/tmlogo.png' %}" class="logoAlign" width="110" height="72">
+        <!-- 210406 Text next to logo (yan)  -->
+        <a href="https://www.tmone.com.my/" style="float: right" class="headerText">Hyperconnected Ecosystem Made Possible</a> 
+        <!-- Section -->
+        <section class="d-flex align-items-center my-5 mt-lg-6 mb-lg-5">
+            <div class ="container-fluid topbar orange-bg">
+            <div class="container">
+            </div>
+            <!-- 210306 added tm background image (yan) -->
+                <div style="background-image: url(/static/assets/img/illustrations/tmone_new.png); background-size: cover;background-size: 100%;">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                            <div class="text-center text-md-center mb-4 mt-md-0">
+                                <h1 class="mb-0 h3">
+                                    <a target="_blank"
+                                       href="https://appseed.us/admin-dashboards/django-dashboard-volt">LOGIN</a>
+
+                                </h1>
+                                <br />
+                                <p>
+                                    {% if msg %}
+                                        {{ msg | safe }}
+                                    {% else %}
+                                        Add your credentials
+                                    {% endif %}                                     
+                                </p>                                 
+                            </div>
+
+                            <form method="post" action="" class="mt-4">
+                                
+                                {% csrf_token %}
+
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="email">Username</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon1"><span class="fas fa-user-circle"></span></span>
+                                        {{ form.username }}
+                                    </div>  
+                                </div>
+                                <!-- End of Form -->
+                                <div class="form-group">
+                                    <!-- Form -->
+                                    <div class="form-group mb-4">
+                                        <!-- 210406 forgot password label added (unfinished - try to link to fp.html failed)  -->
+                                        <div class="form-check" style="float:right">
+                                            <a href="{% url 'password_reset' %}" class="small text-right">Forgot password?</a>
+                                        </div>
+                                        <label for="password">Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
+                                            {{ form.password }}
+                                        </div>  
+                                    </div>
+                                    <!-- End of Form -->
+                                    <div class="d-flex justify-content-between align-items-top mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="remember">
+                                            <label class="form-check-label mb-0" for="remember">
+                                              Remember me
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <a href="{% url 'register' %}" class="small text-right">Register</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <!-- 210306 button color change  -->
+                                    <button type="submit" name="login" class="btn btn-dark" style="background-color:#ee7202; border: #ee7202;">Sign in</button>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 210406 footer added  -->
+        <footer style="background-color: #33384b; height: 150px">
+                <p class="footerText">© 2021 Copyright Telekom Malaysia</p>
+                <p class="infoText">Upgrade Now! | FAQ </p1>
+        </footer>
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
